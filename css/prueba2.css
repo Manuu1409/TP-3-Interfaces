@@ -1,0 +1,496 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #012;
+  font-family: "Baloo Chettan 2", cursive;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+header {
+  display: flex;
+  align-items: center;
+  background: #003366;
+  width: calc(100%);
+  height: auto; /* Cambia la altura a 'auto' para ajustarse al contenido */
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-row: 1; /* El encabezado ocupa la primera fila */
+  margin: 0%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.svgg,
+.logoo,
+.headerDerecha {
+  height: auto;
+  width: 100%;
+}
+.menuHamburgesa {
+  height: 80px;
+  margin-right: 450px;
+  display: grid;
+  justify-content: start;
+  align-content: center;
+
+}
+.hamburgesa {
+  width: 6rem;
+  height: 4rem;
+}
+rect {
+  width: 50%;
+  height: 20%;
+}
+.logoo {
+  margin: auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.logo {
+  width: 22rem;
+  height: 5rem;
+}
+.headerDerecha {
+  display: grid;
+  grid-template-columns: 5rem 5rem;
+  grid-template-rows: 1fr;
+  justify-items: end;
+  align-items: center;
+  justify-content: end;
+  align-content: center;
+}
+.user {
+  width: 100%;
+  height: 4rem;
+}
+.carrito {
+  width: 100%;
+  height: 4.5rem;
+}
+.tipoDeJuego {
+  width: 90%;
+  margin-top: 2rem;
+}
+/*------------------------------------------------------------
+              NAV                                   */
+              .abrir-menu,
+              .cerrar-menu {
+                  display: block;
+                  border: 0;
+                  font-size: 1.25rem;
+                  background-color: transparent;
+                  cursor: pointer;
+              }
+          
+              .abrir-menu {
+                  color: #1c1c1c;
+              }
+          
+              .cerrar-menu {
+                  color: #ececec;
+              }
+          
+              .nav {
+                  opacity: 0;
+                  visibility: hidden;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: end;
+                  gap: 2rem;
+                  position: absolute;
+                  z-index: 1;
+                  top: 77px;
+                  left: 0;
+                  bottom: 390px;
+                  background-color: #001427;
+                  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+                  border: 1px solid white;
+                  margin-left: 1px;
+              }
+          
+              .nav.visible {
+                  opacity: 1;
+                  visibility: visible;
+              }
+              
+              .nav-list {
+                  flex-direction: column;
+                  align-items: end;
+                  font-family: "Baloo Chettan 2", cursive;
+                  font-size: 1.5rem;
+              }
+          
+              li{
+                  color: #ecececec;
+                  margin-bottom: 50px;
+              }
+          
+              ul {
+                  list-style: none;
+              }
+              
+              .hamgurguesa {
+                  width: 80px;
+                  height: 85px;
+              }
+          
+              .item-1, .item-2, .item-3, .item-4, .item-5{
+                  display: flex;
+                  margin-right: 20px;
+                  margin-left: 10px;
+              }
+          
+              .svg-1 , .svg-2 , .svg-3 , .svg-4 , .svg-5 {
+                  height: 40px;
+                  width: 40px;
+                  margin-right: 10px;
+                  
+              }
+
+
+
+/*---------------------- PERFIL*/
+
+.abrir-perfil,
+.cerrar-perfil {
+    display: block;
+    border: 0;
+    font-size: 1.25rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.abrir-perfil {
+    color: #1c1c1c;
+}
+
+.cerrar-perfil {
+    color: #ececec;
+}
+
+.nav-2 {
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 2rem;
+    position: absolute;
+    z-index: 1;
+    top: 77px;
+    right: 1px;
+    bottom: 325px;
+    background-color: #001427;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+    border: 1px solid white;
+    margin-left: 1px;
+}
+
+.nav-2.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.name-user li {
+  margin: 0;
+  margin-left: 10px;
+  
+}
+
+.item-3 li {
+  margin: auto;
+}
+
+.font {
+  font-size: large;
+}
+
+
+
+.separator {
+  background-color: grey;
+  height: 1px;
+  margin-bottom: 10px;
+}
+
+.image-user {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+.biblioteca {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 1fr;
+  width: 90%;
+  height: 100%;
+  background-color: #0080d5;
+  border-radius: 15px;
+}
+ .cardJuegoBibloteca {
+  display: grid;
+  align-items: center;
+  align-content: center;
+  width: 70%;
+  height: 100%;
+  margin-left: 14%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.cardJuegoBibloteca:hover img {
+  filter: blur(5px);
+}
+.cardJuegoBibloteca img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 25rem;
+  height: 13rem;
+}
+.recuadroNombre,
+.recuadroNombreGrande {
+  background-color: #005d9b;
+  font-family: "Baloo Chettan 2", cursive;
+  width: 100%;
+  height: 100%;
+  padding-left: 4%;
+  padding-top: 4%;
+  padding-bottom: 2%;
+}
+.recuadroNombre {
+  color: white;
+  font-size: 1rem;
+}
+.recuadroNombreGrande {
+  color: black;
+  font-size: 1.4rem;
+  padding-top: 0%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 4px rgba(196, 196, 196, 0.25);
+}
+/*------------------------------------------------------------
+              MAIN                                   */
+.main {
+  margin-bottom: 1rem;
+  background-color: #0080d5;
+  border-radius: 15px;
+  width: 90%;
+  padding: 20px 20px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.main .swiper-main {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  position: relative;
+  text-align: start;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 4px rgba(196, 196, 196, 0.25);
+}
+.swiper-slide:hover img {
+  filter: blur(5px);
+}
+.swiper-slide .card-tittle p {
+  font-size: 0.8rem;
+}
+.swiper-slide .card-text p {
+  font-size: 1.1rem;
+  color: black;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.main .card-descripcion {
+  padding: 0.3rem 0.5rem 0.5rem;
+  background-color: #005d9b;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.main .card-descripcion .card-tittle {
+  font-size: 1rem;
+}
+.main .swiper-button-next,
+.main .swiper-button-prev {
+  right: 26px !important;
+  margin-top: 5.3rem !important;
+  top: auto !important;
+}
+
+footer {
+  height: calc(100%);
+  margin-top: 1rem;
+  background-color: #003366;
+  display: grid;
+  padding: 0%;
+}
+footer .image-container2 {
+  display: grid;
+  justify-items: center;
+  height: 106%;
+}
+.image-container2 img {
+  height: 6rem;
+  width: auto;
+}
+.image-container2 {
+  width: 100%;
+  grid-template-columns: 25% 25% 25% 25%;
+  height: auto;
+  border-bottom: 2px white solid;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 10px;
+  text-align: center;
+}
+.item {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+.form input,
+.input-subscribe {
+  text-align: center;
+  border-radius: 10px;
+  height: 10px;
+  padding: 15px;
+  margin: 15px;
+}
+
+u {
+  padding: 35px;
+}
+.image-container2 img:first-child {
+  width: 80%;
+  height: 80%;
+}
+
+.image {
+  height: 150px;
+}
+
+
+
+.important-game {
+  background-color: #003366;
+  width: 1500px;
+  height: 500px;
+  margin-top: 50px;
+  display: flex;
+  position: relative;
+  text-align: center;
+}
+
+.featured-game {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  background-color: #003366;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.image-important-game {
+  height: 350px;
+  width: 700px;
+  margin-left: 50px;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  
+}
+
+.game-details {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  background-color: #005D9B;
+}
+
+.image-subimportant-game {
+  height: 100px;
+  width: 300px;
+ 
+}
+
+.title {
+  font-size: 45px;
+  color: #fff;
+  
+}
+
+.mini-image {
+  margin-top: 30px;
+  margin-left: 50px;
+
+}
+
+
+
+button {
+  display: flex;
+  flex-direction: column;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  background: transparent;
+  gap: .65rem;
+}
+
+button > div {
+  background: white;
+  height:2px ;
+  width: 100%;
+  border-radius: 5px;
+  transition: all .5s;
+  transform-origin:left ;
+}
+
+button:hover div:first-child {
+  transform: rotate(45deg);
+}
+
+button:hover div:nth-child(2) {
+  opacity:0 ;
+}
+
+button:hover div:last-child {
+  transform: rotate(-45deg);
+}

@@ -1,0 +1,290 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(../images/fondo.jpeg);
+  backdrop-filter: blur(15px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: "Baloo Chettan 2", cursive;
+}
+
+a {
+  color: rgb(133, 185, 252);
+}
+
+.center-logo {
+  text-align: center;
+  margin-left: 100px;
+}
+
+.separator-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.separator {
+  background-color: grey;
+  height: 1px;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.form {
+  display: grid;
+  place-items: center;
+}
+
+.form label {
+  display: flex;
+}
+
+.form input {
+  width: 400px;
+  height: 30px;
+}
+
+.loginButton , .registerButton {
+  font-size: 20px;
+  color: #fff;
+  background-color: #29ca8e;
+  border-radius: 15px;
+  width: 400px;
+  height: 70px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-2 {
+  height: 60px;
+  margin: 20px;
+}
+
+.image-3 {
+  height: 65px;
+}
+
+.captcha {
+  height: 90px;
+  width: 400px;
+  margin: 10px;
+}
+
+.container-login {
+  text-align: center;
+}
+
+.container-captcha {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+button {
+  border: 0;
+  background-image: linear-gradient(
+      150deg,
+      #004400,
+      #116611,
+      #55AA55
+  );
+  display: flex;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 3px;
+  color: white;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button span {
+  
+  padding: 10px 30px;
+  border-radius: 8px;
+  transition: .3s;
+  
+
+}
+
+button:hover span {
+  background: none;
+  transform:scale(1.2) ;
+}
+
+button:active {
+  transform: scale(1);
+
+}
+
+
+            
+button:hover {
+  background-image: linear-gradient(
+      100deg,
+      #116611,
+      #004400
+  );
+  
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  padding: 20px;
+}
+
+u {
+  padding: 35px;
+}
+
+footer {
+  height: calc(100%);
+  margin-top: 1rem;
+  background-color: #003366;
+  display: grid;
+  padding: 0%;
+}
+footer .image-container2 {
+  display: grid;
+  justify-items: center;
+  height: 106%;
+}
+.image-container2 img {
+  height: 6rem;
+  width: auto;
+}
+.image-container2 {
+  width: 100%;
+  grid-template-columns: 25% 25% 25% 25%;
+  height: auto;
+  border-bottom: 2px white solid;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 10px;
+  text-align: center;
+}
+.item {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+.form input,
+.input-subscribe {
+  text-align: center;
+  border-radius: 10px;
+  height: 10px;
+  padding: 15px;
+  margin: 15px;
+}
+
+u {
+  padding: 35px;
+}
+.image-container2 img:first-child {
+  width: 80%;
+  height: 80%;
+}
+
+.image {
+  height: 150px;
+}
+
+
+
+
+.cuenta-creada {
+  animation: bounce 0.7s;
+}
+
+
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+
+  
+}
+
+.load {
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: rgb(255, 255, 255);
+  animation: animationButton 1s ease infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes animationButton {
+  0% {
+    transform: rotate(0turn);
+  }
+
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.fill-button {
+  width: 380px;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.fill-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #2f00ff; 
+  transition: width 5s ease; 
+}
+
+.fill-button.clicked::after {
+  width: 100%;
+}
