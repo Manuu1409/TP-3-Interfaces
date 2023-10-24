@@ -36,10 +36,9 @@ let ctx2 = canvas2.getContext('2d');
 let buttonDrawSuperman = document.getElementById('buttonDrawSuperman');
 let buttonDrawBatman = document.getElementById('buttonDrawBatman');
 
-let width2 = canvas2.width;
-let height2 = canvas2.height;
-
-let drawing = false;
+let offsetX = 0;
+let offsetY = 0;
+let img = new Image();
 
 function getMousePos(canvas, evt){
     let ClientRect = canvas.getBoundingClientRect();
@@ -50,34 +49,32 @@ function getMousePos(canvas, evt){
     }
 }
 
+function drawImage(src, m) {
+    img.src = src;
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    ctx2.drawImage(img, m.x - 25, m.y - 25, 50, 50);
+
+}
+
 buttonDrawSuperman.addEventListener('click', function(){
-    drawing = !drawing;
-    this.innerHTML = (drawing) ? 'Parar' : 'Superman';
     drawImage('images/supermann.png');
 });
 
 buttonDrawBatman.addEventListener('click', function(){
-    drawing = !drawing;
-    this.innerHTML = (drawing) ? 'Parar' : 'Batman';
     drawImage('images/batmann.png');
 });
 
-function drawImage(src) {
-    ctx2.beginPath();
-    canvas2.addEventListener('click', function(evt){
-        if(drawing){
-            let m = getMousePos(canvas2, evt);
-            ctx2.lineWidth = 2;
-            ctx2.strokeStyle = '#A1C25E';
+canvas2.addEventListener('click', function(evt){
+    if (img.src) {
+        let m = getMousePos(canvas2, evt);
+        drawImage(img.src, m);
+    }
+}, false);
 
-            let img = new Image();
-            img.src = src;
-
-            img.onload = function() {
-                ctx2.drawImage(img, m.x - 25, m.y - 25, 50, 50);
-            };
-        }
-    }, false);
-}
-
+canvas2.addEventListener('mousemove', function(evt) {
+    if (evt.buttons === 1) {  // este if es para saber si el boton izquierda esta presionado
+        let m = getMousePos(canvas2, evt);
+        drawImage(img.src, m);
+    }
+}, false);
 
