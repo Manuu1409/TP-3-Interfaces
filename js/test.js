@@ -1,34 +1,28 @@
-/*
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let width = 500;
 let height = 500;
 
-let img_batman = new Image ();
-img_batman.src = 'images/batmann.png'
+let img_batman = new Image();
+img_batman.src = 'images/batmann.png';
 
 img_batman.onload = function() {
-    for (let i = 0; i < 5; i++) {
-        ctx.beginPath();
-        
-        ctx.stroke();
-        ctx.drawImage(img_batman, Math.round(Math.random() * width) - 20, Math.round(Math.random() * height) - 20, 40, 40);
+    for (let i = 0; i < 3; i++) {
+        ctx.drawImage(img_batman, 10, (i * 60) + 10, 40, 40);
     }
 };
 
-let img_supermann = new Image ();
-img_supermann.src = 'images/supermann.png'
+let img_supermann = new Image();
+img_supermann.src = 'images/supermann.png';
 
 img_supermann.onload = function() {
-    for (let i = 0; i < 5; i++) {
-        ctx.beginPath();
-        
-        ctx.stroke();
-        ctx.drawImage(img_supermann, Math.round(Math.random() * width) - 20, Math.round(Math.random() * height) - 20, 40, 40);
+    for (let i = 0; i < 3; i++) {
+        ctx.drawImage(img_supermann, width - 50, (i * 60) + 10, 40, 40); 
     }
 };
 
-*/
+
+/*
 
 
 let canvas2 = document.getElementById("canvas2");
@@ -77,4 +71,6 @@ canvas2.addEventListener('mousemove', function(evt) {
         drawImage(img.src, m);
     }
 }, false);
+
+*/
 
