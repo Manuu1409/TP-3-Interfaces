@@ -4,7 +4,7 @@ class Circle extends Figure {
 
         super(posX, PosY, fill, context);
 
-        this.radius = radius
+        this.radius = radius;
     }
 
     draw () {
@@ -26,12 +26,14 @@ class Circle extends Figure {
         return this.radius;
     }
 
-    isPointInside(x,y) {
+    isPointInside(x,y) {  //no me funciona al hacer click se redondee de un color
         let _x = this.posX - x;
         let _y = this.posY -y;
 
         return Math.sqrt(_x * _x + _y * _y) < this.radius;
     }
+
+    
 
 
     
