@@ -5,7 +5,7 @@ class Figure{
         this.posY = posY;
         this.fill = fill;
         this.resaltado = false;
-        this.resaltadoEstilo = 'red';
+        this.resaltadoEstilo = 'white';
         this.ctx = context;
         
     }

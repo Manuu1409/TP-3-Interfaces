@@ -10,7 +10,7 @@ body {
   background-color: #012;
   font-family: "Baloo Chettan 2", cursive;
   color: white;
-  
+  /*display: flex;  esto causa problema*/
   justify-content: center;
   flex-direction: column;
   align-items: center;
