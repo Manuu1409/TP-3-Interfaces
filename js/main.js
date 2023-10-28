@@ -7,16 +7,22 @@ let figures = [ ];
 let lastClickedFigure = null;
 let isMouseDown = false;
 
+
+
     
     addCircle();
     drawFigure();
+
+    let board = new Board(7,6);
+    board.buildBoard();
+    board.drawBoard();
 
 
     function addCircle() {
         let initialY = 50; // altura para las fichas
     
         for (let i = 0; i < 5; i++) {
-            let posX = 20; 
+            let posX = 20;
             let posY = initialY + i * 40;  //espaciado entre fichas
             let color = 'red';
     
@@ -39,7 +45,7 @@ let isMouseDown = false;
 
 function drawFigure() {
     clearCanvas();
-    for (let i = 0; i < figures.length; i++) { 
+    for (let i = 0; i < figures.length; i++) {
         figures[i].draw();
     }
 }
@@ -92,9 +98,15 @@ function onMouseMove(e) {  //movimiento al hacer click en la figura
     if (isMouseDown && lastClickedFigure != null) {
         lastClickedFigure.setPosition(e.layerX, e.layerY);
         drawFigure();
+        board.drawBoard();
     }
 }
 
 function onMouseUp(e) {
     isMouseDown = false;
 }
+
+
+
+
+//

@@ -684,3 +684,8 @@ button span {
     transform: rotate(1turn);
   }
 }
+
+
+.hidden {
+  display: none;
+}
