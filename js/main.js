@@ -107,6 +107,11 @@ function onMouseMove(e) {  //movimiento al hacer click en la figura
 
 function onMouseUp(e) {
     isMouseDown = false;
+    if (lastClickedFigure) {
+        lastClickedFigure.resetPosition();
+        drawFigure();
+        board.drawBoard();
+    }
 }
 
 

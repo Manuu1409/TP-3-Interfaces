@@ -3,19 +3,27 @@ class Circle extends Figure {
         super(posX, posY, null, context);
         this.radius = radius;
         this.img = img;
+        this.initialPosX = posX;
+        this.initialPosY = posY;
+    }
+
+    // Resto del código...
+
+    resetPosition() {
+        this.setPosition(this.initialPosX, this.initialPosY);
     }
 
     draw() {
         super.draw();
         this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);  //hace el circulo
+        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
         this.ctx.closePath();
 
         if (this.img) {
-            this.ctx.save();
-            this.ctx.clip();  //recorta la img para adecuarla al circulo
-            this.ctx.drawImage(this.img, this.posX - this.radius, this.posY - this.radius, this.radius * 2, this.radius * 2); //relleno con la imagen
-            this.ctx.restore();
+            this.ctx.save(); // Guarda el contexto actual
+            this.ctx.clip(); // Crea una máscara de recorte
+            this.ctx.drawImage(this.img, this.posX - this.radius, this.posY - this.radius, this.radius * 2, this.radius * 2);
+            this.ctx.restore(); // Restaura el contexto original
         }
 
         if (this.resaltado === true) {
