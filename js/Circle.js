@@ -1,25 +1,28 @@
 class Circle extends Figure {
-
-    constructor(posX, PosY, radius, fill, context) {
-
-        super(posX, PosY, fill, context);
-
+    constructor(posX, posY, radius, img, context) {
+        super(posX, posY, null, context);
         this.radius = radius;
+        this.img = img;
     }
 
-    draw () {
+    draw() {
         super.draw();
         this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
-        this.ctx.fill()
+        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);  //hace el circulo
+        this.ctx.closePath();
+
+        if (this.img) {
+            this.ctx.save();
+            this.ctx.clip();  //recorta la img para adecuarla al circulo
+            this.ctx.drawImage(this.img, this.posX - this.radius, this.posY - this.radius, this.radius * 2, this.radius * 2); //relleno con la imagen
+            this.ctx.restore();
+        }
 
         if (this.resaltado === true) {
             this.ctx.strokeStyle = this.resaltadoEstilo;
             this.ctx.lineWidth = 2;
             this.ctx.stroke();
         }
-
-        this.ctx.closePath();
     }
 
 

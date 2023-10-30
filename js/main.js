@@ -19,23 +19,26 @@ let isMouseDown = false;
 
 
     function addCircle() {
-        let initialY = 50; // altura para las fichas
+        let initialY = 50;
+    
+    
+        let supermanImg = new Image();
+        supermanImg.src = 'images/supermann.png';
+    
+        let batmanImg = new Image();
+        batmanImg.src = 'images/batmann.png';
     
         for (let i = 0; i < 5; i++) {
             let posX = 20;
-            let posY = initialY + i * 40;  //espaciado entre fichas
-            let color = 'red';
-    
-            let circle = new Circle(posX, posY, 10, color, ctx);
+            let posY = initialY + i * 60;
+            let circle = new Circle(posX, posY, 20, supermanImg, ctx);
             figures.push(circle);
         }
     
         for (let i = 0; i < 5; i++) {
-            let posX = Canvaswidth - 30; // me lo manda para el lado derecho
-            let posY = initialY + i * 40; //espaciado entre fichas
-            let color = 'black';
-    
-            let circle = new Circle(posX, posY, 10, color, ctx);
+            let posX = Canvaswidth - 30;
+            let posY = initialY + i * 60;
+            let circle = new Circle(posX, posY, 20, batmanImg, ctx);
             figures.push(circle);
         }
     
