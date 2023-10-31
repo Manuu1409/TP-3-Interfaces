@@ -7,23 +7,19 @@ class Circle extends Figure {
         this.initialPosY = posY;
     }
 
-    // Resto del código...
-
-    resetPosition() {
+    resetPosition() { //me vuelve a la pos  inicial
         this.setPosition(this.initialPosX, this.initialPosY);
     }
 
     draw() {
         super.draw();
         this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI); //me dibuja el circulo
         this.ctx.closePath();
 
         if (this.img) {
-            this.ctx.save(); // Guarda el contexto actual
-            this.ctx.clip(); // Crea una máscara de recorte
+            
             this.ctx.drawImage(this.img, this.posX - this.radius, this.posY - this.radius, this.radius * 2, this.radius * 2);
-            this.ctx.restore(); // Restaura el contexto original
         }
 
         if (this.resaltado === true) {
@@ -38,7 +34,7 @@ class Circle extends Figure {
         return this.radius;
     }
 
-    isPointInside(x,y) {  //no me funciona al hacer click se redondee de un color
+    isPointInside(x,y) {
         let _x = this.posX - x;
         let _y = this.posY -y;
 

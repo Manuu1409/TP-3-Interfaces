@@ -11,11 +11,15 @@ let isMouseDown = false;
 
     
     addCircle();
+    clearCanvas();
     drawFigure();
 
     let board = new Board(7,6);
     board.buildBoard();
+    board.putToken(3)
+    board.putToken(1)
     board.drawBoard();
+   
 
 
     function addCircle() {
@@ -23,7 +27,7 @@ let isMouseDown = false;
     
     
         let supermanImg = new Image();
-        supermanImg.src = 'images/supermann.png';
+        supermanImg.src = 'images/fichaSuperman.png';
     
         let batmanImg = new Image();
         batmanImg.src = 'images/batmann.png';
@@ -43,11 +47,12 @@ let isMouseDown = false;
         }
     
         drawFigure();
+        
     }
     
 
 function drawFigure() {
-    clearCanvas();
+    //clearCanvas();
     for (let i = 0; i < figures.length; i++) {
         figures[i].draw();
     }
@@ -87,7 +92,7 @@ function onMouseDown(e) {
         
     }
 
-    let clickFigure = findClickedFigure(e.layerX, e.layerY);
+    let clickFigure = findClickedFigure(e.offsetX, e.offsetY);
     if (clickFigure != null) {
         clickFigure.setResaltado(true);
         lastClickedFigure = clickFigure;
@@ -99,9 +104,11 @@ function onMouseDown(e) {
 
 function onMouseMove(e) {  //movimiento al hacer click en la figura
     if (isMouseDown && lastClickedFigure != null) {
-        lastClickedFigure.setPosition(e.layerX, e.layerY);
-        drawFigure();
+        lastClickedFigure.setPosition(e.offsetX, e.offsetY);
+        
+        clearCanvas()
         board.drawBoard();
+        drawFigure();
     }
 }
 
@@ -109,6 +116,7 @@ function onMouseUp(e) {
     isMouseDown = false;
     if (lastClickedFigure) {
         lastClickedFigure.resetPosition();
+        clearCanvas();
         drawFigure();
         board.drawBoard();
     }
