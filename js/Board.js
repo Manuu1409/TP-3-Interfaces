@@ -1,7 +1,7 @@
 class Board {
     constructor (x,y) {
-        this.MaxFil = x; //x
-        this.MaxCol = y; //y
+        this.MaxFil = y; //x
+        this.MaxCol = x; //y
         this.board = []; // crea la matriz del tablero
         this.size = 50; //tamaño de la celda
         
@@ -45,10 +45,34 @@ class Board {
 
 
     putToken (moveX) {
-        
-        console.log(this.MaxFil-2, moveX)
-        this.board[moveX][this.MaxCol-1].set();
-        console.log(this.MaxFil, moveX)
+
+        let isSeted = false;
+
+        for(let y = 0; y < this.MaxFil - 1; y++) {
+            isSeted = this.board[moveX][y].getisSet();
+            console.log(this.MaxFil);
+
+            if(isSeted && y == 0) {  //para que no me pase del limite de columna llena
+                return false;
+
+            }
+
+            else if (isSeted) { //para que no se me ponga una arriba del otro
+                
+                this.board[moveX][y-1].set();
+
+            }
+
+            else if (y ==this.MaxFil-2) {  //pregunta si no hay ficha ficha en la columna
+                console.log()
+                this.board[moveX][y].set();
+
+            }
+
+        }
+        return true;
+        //console.log(this.MaxFil-2, moveX)
+        //console.log(this.MaxFil, moveX)
         
 
         
@@ -59,6 +83,7 @@ class Board {
 
     isLine(line) {
         let samePieces = 0;
+        console.log(line);
         for (let i = 0; i < line.length; i++) {
             if (line[i].isSet) {
                 samePieces++;
@@ -77,11 +102,11 @@ class Board {
     
     CheckVertical(moveX) {
         console.log("chekeo columna vertical", moveX);
-        let x = moveX;
+        
         let line = [];
     
-        for (let y = 0; y < this.MaxCol; y++) {
-            line.push(this.board[x][y]);
+        for (let y = 0; y < this.MaxFil; y++) {
+            line.push(this.board[moveX][y]);
         }
     
         let isLine = this.isLine(line);
@@ -92,6 +117,26 @@ class Board {
     
         return isLine;
     }
+
+    CheckHorizontal(moveY) {
+        console.log("chekeo columna horizontal", moveY);
+        
+        let line = [];
+    
+        for (let x = 0; x < this.MaxCol ; x++) {
+            console.log(this.board[x][moveY])
+            line.push(this.board[x][moveY]);
+        }
+    
+        let isLine = this.isLine(line);
+    
+        if (isLine) {
+            console.log('se hizo linea horizontalmente');
+        }
+    
+        return isLine;
+    }
+    
     
 
 
@@ -117,6 +162,10 @@ class box {
 
     set() {
         this.isSet = true;
+    }
+
+    getisSet() {
+        return this.isSet;
     }
 
     getPosX() {
