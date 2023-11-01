@@ -16,8 +16,18 @@ let isMouseDown = false;
 
     let board = new Board(7,6);
     board.buildBoard();
-    board.putToken(3)
-    board.putToken(1)
+    board.putToken(1);
+board.CheckVertical(1);
+
+board.putToken(2);
+board.CheckVertical(2);
+
+board.putToken(3);
+board.CheckVertical(3);
+
+board.putToken(4);
+board.CheckVertical(4);
+
     board.drawBoard();
    
 

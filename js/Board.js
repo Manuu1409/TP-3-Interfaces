@@ -45,6 +45,7 @@ class Board {
 
 
     putToken (moveX) {
+        
         console.log(this.MaxFil-2, moveX)
         this.board[moveX][this.MaxCol-1].set();
         console.log(this.MaxFil, moveX)
@@ -55,6 +56,46 @@ class Board {
 
 
     }
+
+    isLine(line) {
+        let samePieces = 0;
+        for (let i = 0; i < line.length; i++) {
+            if (line[i].isSet) {
+                samePieces++;
+                if (samePieces >= 4) {
+                    return true;
+                }
+            } else {
+                samePieces = 0;
+            }
+        }
+        console.log('samePieces:', samePieces);
+        return false;
+    }
+    
+    
+    
+    CheckVertical(moveX) {
+        console.log("chekeo columna vertical", moveX);
+        let x = moveX;
+        let line = [];
+    
+        for (let y = 0; y < this.MaxCol; y++) {
+            line.push(this.board[x][y]);
+        }
+    
+        let isLine = this.isLine(line);
+    
+        if (isLine) {
+            console.log('se hizo linea verticalmente');
+        }
+    
+        return isLine;
+    }
+    
+
+
+
 
 }
 
