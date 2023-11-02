@@ -7,8 +7,6 @@ let figures = [ ];
 let lastClickedFigure = null;
 let isMouseDown = false;
 
-
-
     
     addCircle();
     clearCanvas();
@@ -16,12 +14,24 @@ let isMouseDown = false;
 
     let board = new Board(6,7);
     board.buildBoard();
+    board.putToken(0);
+    board.putToken(0);
     board.putToken(1);
     board.putToken(1);
-    board.putToken(1);
-    board.putToken(1);
-    board.CheckVertical(1);
-    board.CheckHorizontal(5);
+    board.putToken(2);
+    board.putToken(2);
+    board.putToken(2);
+    board.putToken(3);
+    board.putToken(3);
+    board.putToken(3);
+    board.putToken(3);
+    
+    board.CheckDiagonal(0,0);
+   
+    
+   
+    
+    
     board.drawBoard();
    
 
@@ -129,4 +139,72 @@ function onMouseUp(e) {
 
 
 
-//
+// contador
+const startingMinutes = 5;
+let time = startingMinutes * 60
+
+const time_remaining = document.getElementById('time-remaining')
+
+setInterval(updateTimeRemaning, 1000);
+
+function updateTimeRemaning () {
+    
+    const minutes =  Math.floor(time / 60);
+    let seconds = time % 60;
+
+    time_remaining.innerHTML = `${minutes}: ${seconds}`;
+
+    time--;
+
+}
+
+
+
+//cambiar de tablero
+
+let btn_5_in_line = document.getElementById("btn-5-in-line");
+let btn_6_in_line = document.getElementById("btn-6-in-line")
+let btn_7_in_line = document.getElementById("btn-7-in-line")
+
+function switchColumnsAndRows() {
+    switch (mode) {
+        case 7:
+            col = 10;
+            fil = 9;
+            break;
+        case 6:
+            col = 9;
+            fil = 8;
+            break;
+        case 5:
+            col = 8;
+            fil = 7;
+            break;
+        default:
+            col = 7;
+            fil = 6;
+            break;
+    }
+
+    // Vuelve a construir el tablero con las nuevas columnas y filas
+    board = new Board(col, fil);
+    board.buildBoard();
+    clearCanvas();
+    drawFigure();
+    board.drawBoard();
+}
+
+btn_5_in_line.addEventListener("click", function () {
+    mode = 5;
+    switchColumnsAndRows();
+});
+
+btn_6_in_line.addEventListener("click", function () {
+    mode = 6;
+    switchColumnsAndRows();
+});
+
+btn_7_in_line.addEventListener("click", function () {
+    mode = 7;
+    switchColumnsAndRows();
+});

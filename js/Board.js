@@ -136,6 +136,41 @@ class Board {
     
         return isLine;
     }
+
+
+    CheckDiagonal(moveX, moveY) {
+        console.log("Chequeo diagonal");
+    
+        let line = [];
+        let x = moveX;
+        let y = moveY;
+    
+        while (x >= 0 && y >= 0) {
+            line.push(this.board[x][y]);
+            x--;
+            y--;
+        }
+    
+        x = moveX + 1;
+        y = moveY + 1;
+    
+        while (x < this.MaxCol && y < this.MaxFil) {
+            line.push(this.board[x][y]);
+            x++;
+            y++;
+        }
+    
+        let isLine = this.isLine(line);
+    
+        if (isLine) {
+            console.log('Se hizo una línea diagonal');
+        }
+    
+        return isLine;
+    }
+    
+    
+    
     
     
 
