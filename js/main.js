@@ -187,7 +187,7 @@ function switchColumnsAndRows() {
     }
 
     // Vuelve a construir el tablero con las nuevas columnas y filas
-    board = new Board(col, fil);
+    board = new Board(fil, col);
     board.buildBoard();
     clearCanvas();
     drawFigure();
