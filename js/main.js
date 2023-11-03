@@ -161,7 +161,7 @@ function updateTimeRemaning () {
 
 
 //cambiar de tablero
-
+let btn_4_in_line = document.getElementById("btn-4-in-line");
 let btn_5_in_line = document.getElementById("btn-5-in-line");
 let btn_6_in_line = document.getElementById("btn-6-in-line")
 let btn_7_in_line = document.getElementById("btn-7-in-line")
@@ -193,6 +193,10 @@ function switchColumnsAndRows() {
     drawFigure();
     board.drawBoard();
 }
+btn_4_in_line.addEventListener("click", function () {
+    mode = 'default';
+    switchColumnsAndRows();
+});
 
 btn_5_in_line.addEventListener("click", function () {
     mode = 5;
