@@ -14,18 +14,7 @@ let isMouseDown = false;
 
     let board = new Board(6,7);
     board.buildBoard();
-    board.putToken(0);
-    board.putToken(0);
-    board.putToken(1);
-    board.putToken(1);
-    board.putToken(2);
-    board.putToken(2);
-    board.putToken(2);
-    board.putToken(3);
-    board.putToken(3);
-    board.putToken(3);
-    board.putToken(3);
-    
+   
     board.CheckDiagonal(0,0);
    
     
@@ -80,6 +69,7 @@ function clearCanvas() {
 function findClickedFigure(x,y) {
     for(let i = 0; i < figures.length; i++) { //recorro figuras
         const element = figures[i];  //me las traigo
+        console.log(x,y)
         if(element.isPointInside(x,y)) {
             return element;
         }
@@ -129,6 +119,9 @@ function onMouseMove(e) {  //movimiento al hacer click en la figura
 function onMouseUp(e) {
     isMouseDown = false;
     if (lastClickedFigure) {
+        if(board.isIn(e.offsetX, e.offsetY)) {
+            board.dropToken(e.offsetX)
+        }
         lastClickedFigure.resetPosition();
         clearCanvas();
         drawFigure();

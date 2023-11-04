@@ -4,7 +4,10 @@ class Board {
         this.MaxCol = x; //y
         this.board = []; // crea la matriz del tablero
         this.size = 50; //tamaño de la celda
-        
+        this.dropboxX = 200;
+        this.dropboxY = 100 - this.size;
+        this.dropBoxXMax = this.dropboxX+(this.size * (x+1));
+        this.dropBoxYMax = this.size + this.dropboxY;
         
     }
 
@@ -23,7 +26,8 @@ class Board {
                 }else{
                     src = 'images/casillero_vacio_negro.jpg';
                 }
-                this.board[fil][col] = new box ((fil*this.size ), (col*this.size), this.size, src) // creo celda y le doy tamaño
+                this.board[fil][col] = new box ((fil*this.size ), (col*this.size), this.size, src); // creo celda y le doy tamaño
+                
             }
 
         }
@@ -61,11 +65,15 @@ class Board {
                 
                 this.board[moveX][y-1].set();
 
+                return true;
+
             }
 
             else if (y ==this.MaxFil-2) {  //pregunta si no hay ficha ficha en la columna
                 console.log()
                 this.board[moveX][y].set();
+
+                return true;
 
             }
 
@@ -74,16 +82,48 @@ class Board {
         //console.log(this.MaxFil-2, moveX)
         //console.log(this.MaxFil, moveX)
         
+    }
 
-        
-        
+    isIn (x,y) {
+
+       // console.log(x > this.dropboxX, "despues de x", x < this.dropBoxXMax, "antes de x" ,y < this.dropBoxYMax, "antes de y" ,y > this.dropboxY, "despues de y");
+
+        if((x > this.dropboxX && x < this.dropBoxXMax) && (y < this.dropBoxYMax && y > this.dropboxY)) {
+            return true;
+
+        }
+        else {
+            return false;
+
+        }
+
+
+    }
+
+    dropToken(x) {
+
+        let ini = x - this.dropboxX;
+        let pos = Math.floor(ini/this.size);
+        let move = this.putToken(pos);
+        //console.log(pos);
+        if(move) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+      // if() {
+
+       //}
 
 
     }
 
     isLine(line) {
         let samePieces = 0;
-        console.log(line);
+        //console.log(line);
         for (let i = 0; i < line.length; i++) {
             if (line[i].isSet) {
                 samePieces++;
@@ -213,10 +253,10 @@ class box {
 
     draw() {
         let radius = 20;
-        ctx.drawImage(this.img_empty,this.posX + 220,this.posY+(this.size*2),this.size,this.size);
+        ctx.drawImage(this.img_empty,this.posX + 200,this.posY+(this.size*2),this.size,this.size);
         
         if(this.isSet)
-        ctx.drawImage(this.img_superman, this.posX + 220 , this.posY+(this.size*2), radius * 2, radius * 2);
+        ctx.drawImage(this.img_superman, this.posX + 200 , this.posY+(this.size*2), radius * 2, radius * 2);
 
 
       //  console.log(this.img_superman, this.posX - radius, this.posY - radius, radius * 2, radius * 2)
