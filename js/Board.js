@@ -228,10 +228,11 @@ class box {
         this.img_empty = document.createElement('img'); // creo en el dom elemento img
         this.img_empty.src = src
         this.img_superman = new Image();
-        this.batmann = new Image()
-        this.batmann.src = 'images/batmann.png'
         this.img_superman.src = 'images/fichaSuperman.png';
         this.isSet = false;
+
+        
+
     }
 
     set() {
@@ -254,11 +255,9 @@ class box {
         let radius = 20;
         ctx.drawImage(this.img_empty,this.posX + 200,this.posY+(this.size*2),this.size,this.size);
         
-        if(this.isSet){
-            
-            ctx.drawImage(this.img_superman, this.posX + 200 , this.posY+(this.size*2), radius * 2.4, radius * 2.4);
-            //ctx.drawImage(this.batmann, this.posX + 200 , this.posY+(this.size*2), radius * 2.5, radius * 2.5);
-        }
+        if(this.isSet)
+        ctx.drawImage(this.img_superman, this.posX + 200 , this.posY+(this.size*2), radius * 2, radius * 2);
+
 
       //  console.log(this.img_superman, this.posX - radius, this.posY - radius, radius * 2, radius * 2)
         

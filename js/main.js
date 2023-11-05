@@ -100,7 +100,13 @@ function onMouseDown(e) {
     if (clickFigure != null) {
         clickFigure.setResaltado(true);
         lastClickedFigure = clickFigure;
+         if (clickFigure.img.src.includes("fichaSuperman")) {
+            console.log("Ficha de Superman seleccionada");
+        } else if (clickFigure.img.src.includes("batmann")) {
+            console.log("Ficha de Batman seleccionada");
+        }
     }
+    
     drawFigure;
 
     
