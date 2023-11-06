@@ -1,10 +1,11 @@
 class Circle extends Figure {
-    constructor(posX, posY, radius, img, context) {
+    constructor(posX, posY, radius, img, context, player) {
         super(posX, posY, null, context);
         this.radius = radius;
         this.img = img;
         this.initialPosX = posX;
         this.initialPosY = posY;
+        this.player = player;
     }
 
     resetPosition() { //me vuelve a la pos  inicial
@@ -32,6 +33,10 @@ class Circle extends Figure {
 
     getRadius() {
         return this.radius;
+    }
+
+    getPlayer() {
+        return this.player;
     }
 
     isPointInside(x,y) {

@@ -7,22 +7,8 @@ let figures = [ ];
 let lastClickedFigure = null;
 let isMouseDown = false;
 
+let player = 1;
     
-    addCircle();
-    clearCanvas();
-    drawFigure();
-
-    let board = new Board(6,7);
-    board.buildBoard();
-   
-    board.CheckDiagonal(0,0);
-   
-    
-   
-    
-    
-    board.drawBoard();
-   
 
 
     function addCircle() {
@@ -38,14 +24,14 @@ let isMouseDown = false;
         for (let i = 0; i < 5; i++) {
             let posX = 20;
             let posY = initialY + i * 60;
-            let circle = new Circle(posX, posY, 20, supermanImg, ctx);
+            let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
             figures.push(circle);
         }
     
         for (let i = 0; i < 5; i++) {
             let posX = Canvaswidth - 30;
             let posY = initialY + i * 60;
-            let circle = new Circle(posX, posY, 20, batmanImg, ctx);
+            let circle = new Circle(posX, posY, 20, batmanImg, ctx, 2);
             figures.push(circle);
         }
     
@@ -70,7 +56,7 @@ function findClickedFigure(x,y) {
     for(let i = 0; i < figures.length; i++) { //recorro figuras
         const element = figures[i];  //me las traigo
         console.log(x,y)
-        if(element.isPointInside(x,y)) {
+        if(element.isPointInside(x,y) && (element.getPlayer() == player)) {
             return element;
         }
 
@@ -100,11 +86,7 @@ function onMouseDown(e) {
     if (clickFigure != null) {
         clickFigure.setResaltado(true);
         lastClickedFigure = clickFigure;
-         if (clickFigure.img.src.includes("fichaSuperman")) {
-            console.log("Ficha de Superman seleccionada");
-        } else if (clickFigure.img.src.includes("batmann")) {
-            console.log("Ficha de Batman seleccionada");
-        }
+        
     }
     
     drawFigure;
@@ -123,16 +105,41 @@ function onMouseMove(e) {  //movimiento al hacer click en la figura
 }
 
 function onMouseUp(e) {
+    let positions = [];
     isMouseDown = false;
     if (lastClickedFigure) {
         if(board.isIn(e.offsetX, e.offsetY)) {
-            board.dropToken(e.offsetX)
+            positions = board.dropToken(e.offsetX , player);
+            if(positions != -1) {
+                if(board.checkWinner(positions[0], positions[1])) {
+                    console.log("ganaste")
+                    youWin(player);
+                    return;
+                }
+                switch(player) {
+                    case 1:
+                        player = 2;
+                        break;
+                    
+                    case 2:
+                        player = 1;
+                }
+            }
         }
         lastClickedFigure.resetPosition();
         clearCanvas();
         drawFigure();
         board.drawBoard();
     }
+}
+
+function youWin() {
+    clearCanvas();
+    board.drawBoard();
+    canvas.removeEventListener('mousedown', onMouseDown);
+    canvas.removeEventListener('mouseup', onMouseUp);
+    canvas.removeEventListener('mousemove', onMouseMove);
+
 }
 
 
@@ -186,8 +193,9 @@ function switchColumnsAndRows() {
     }
 
     // Vuelve a construir el tablero con las nuevas columnas y filas
-    board = new Board(fil, col);
+    board = new Board(fil, col, 4);
     board.buildBoard();
+    addCircle();
     clearCanvas();
     drawFigure();
     board.drawBoard();

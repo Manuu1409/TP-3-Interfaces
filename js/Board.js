@@ -1,5 +1,5 @@
 class Board {
-    constructor (x,y) {
+    constructor (x,y, lineMode) {
         this.MaxFil = y; //x
         this.MaxCol = x; //y
         this.board = []; // crea la matriz del tablero
@@ -8,7 +8,7 @@ class Board {
         this.dropboxY = 100 - this.size;
         this.dropBoxXMax = this.dropboxX+(this.size * (x+1));
         this.dropBoxYMax = this.size + this.dropboxY;
-        
+        this.lineMode = lineMode;
     }
 
 
@@ -48,7 +48,7 @@ class Board {
     }
 
 
-    putToken (moveX) {
+    putToken (moveX ,player) {
 
         let isSeted = false;
 
@@ -57,23 +57,23 @@ class Board {
             console.log(this.MaxFil);
 
             if(isSeted && y == 0) {  //para que no me pase del limite de columna llena
-                return false;
+                return -1;
 
             }
 
             else if (isSeted) { //para que no se me ponga una arriba del otro
                 
-                this.board[moveX][y-1].set();
+                this.board[moveX][y-1].set(player);
 
-                return true;
+                return y-1;
 
             }
 
             else if (y ==this.MaxFil-2) {  //pregunta si no hay ficha ficha en la columna
                 console.log()
-                this.board[moveX][y].set();
+                this.board[moveX][y].set(player);
 
-                return true;
+                return y;
 
             }
 
@@ -83,6 +83,7 @@ class Board {
         //console.log(this.MaxFil, moveX)
         
     }
+    
 
     isIn (x,y) {
 
@@ -100,34 +101,29 @@ class Board {
 
     }
 
-    dropToken(x) {
-
+    dropToken(x, player) {
+        let positions = [];
         let ini = x - this.dropboxX;
-        let pos = Math.floor(ini/this.size);
-        let move = this.putToken(pos);
-        //console.log(pos);
-        if(move) {
-            return true;
+        let posX = Math.floor(ini/this.size);
+        let posY = this.putToken(posX, player);
+    
+        if(posY != -1) {
+            positions.push(posX,posY);
+            return positions = [posX,posY];
+        } else {
+            return -1;
         }
-        else {
-            return false;
-        }
-
-
-      // if() {
-
-       //}
-
-
     }
+    
 
     isLine(line) {
         let samePieces = 0;
         //console.log(line);
         for (let i = 0; i < line.length; i++) {
+            console.log(line);
             if (line[i].isSet) {
                 samePieces++;
-                if (samePieces >= 4) {
+                if (samePieces >= this.lineMode) {
                     return true;
                 }
             } else {
@@ -145,8 +141,10 @@ class Board {
         
         let line = [];
     
-        for (let y = 0; y < this.MaxFil; y++) {
+        for (let y = 0; y < this.MaxFil - 1; y++) {
+            console.log("hola");
             line.push(this.board[moveX][y]);
+            console.log(this.board[moveX][y]);
         }
     
         let isLine = this.isLine(line);
@@ -163,8 +161,10 @@ class Board {
         
         let line = [];
     
-        for (let x = 0; x < this.MaxCol ; x++) {
+        for (let x = 0; x < this.MaxCol - 1 ; x++) {
+            console.log("entro");
             console.log(this.board[x][moveY])
+            
             line.push(this.board[x][moveY]);
         }
     
@@ -208,6 +208,22 @@ class Board {
     
         return isLine;
     }
+
+    checkWinner(moveX, moveY) {
+        this.CheckHorizontal(moveY);
+        this.CheckVertical(moveX)
+        //this.CheckDiagonal(moveX, moveY);
+
+        if(this.CheckVertical(moveX) ||this.CheckHorizontal(moveY)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    
     
     
     
@@ -229,14 +245,18 @@ class box {
         this.img_empty.src = src
         this.img_superman = new Image();
         this.img_superman.src = 'images/fichaSuperman.png';
+        this.img_batman = new Image();
+        this.img_batman.src = 'images/batmann.png';
         this.isSet = false;
+        this.player = 0;
 
         
 
     }
 
-    set() {
+    set(player) {
         this.isSet = true;
+        this.player = player;
     }
 
     getisSet() {
@@ -255,8 +275,15 @@ class box {
         let radius = 20;
         ctx.drawImage(this.img_empty,this.posX + 200,this.posY+(this.size*2),this.size,this.size);
         
-        if(this.isSet)
-        ctx.drawImage(this.img_superman, this.posX + 200 , this.posY+(this.size*2), radius * 2, radius * 2);
+        if(this.isSet && this.player == 1) {
+            ctx.drawImage(this.img_superman, this.posX + 200 , this.posY+(this.size*2), radius * 2.4, radius * 2.4);
+        }
+
+        else if(this.isSet && this.player == 2){
+            ctx.drawImage(this.img_batman, this.posX + 200 , this.posY+(this.size*2), radius * 2.4, radius * 2.4);
+            
+        }
+        
 
 
       //  console.log(this.img_superman, this.posX - radius, this.posY - radius, radius * 2, radius * 2)
