@@ -8,6 +8,8 @@ let lastClickedFigure = null;
 let isMouseDown = false;
 let player = 1;
 let turn = 0;
+let ficha1 = new Image();
+let ficha2 = new Image();
 let btnRestart = document.getElementById("restart");
 let btnSuperman = document.getElementById("selectSuperman");
 let btnRobin = document.getElementById("selectRobin");
@@ -421,7 +423,7 @@ function ShowFigureSuperman() {
   btnWw.classList.remove("selected");
   btnSuperman.classList.add("selected");
   addFigureSuperman();
-
+  ficha1.src = "images/supermann.png"
 }
 
 
@@ -431,6 +433,7 @@ function ShowFigureBatman() {
   btnRobin.classList.remove("selected");
   btnBatman.classList.add("selected");
   addFigureBatman();
+  ficha2.src = "images/batmann.png"
 }
 
 btnRobin.addEventListener("click", ShowFigureRobin)
@@ -439,7 +442,7 @@ function ShowFigureRobin() {
   btnBatman.classList.remove("selected");
   btnRobin.classList.add("selected");
   addFigureRobin();
-
+  ficha2.src = "images/fichaRobin.png"
 }
 
 btnWw.addEventListener("click", ShowFigureWw)
@@ -448,12 +451,23 @@ function ShowFigureWw() {
   btnSuperman.classList.remove("selected");
   btnWw.classList.add("selected");
   addFigureWw();
-
+  ficha1.src = "images/fichaWw.png "
 }
 
 
+// // Obtén el elemento por su id
+// const miElemento = document.getElementById("miElemento");
 
-
+// // Verifica el valor del atributo id
+// if (miElemento) {
+//   if (miElemento.id === "miElemento") {
+//     console.log("El id del elemento es 'miElemento'.");
+//   } else {
+//     console.log("El id del elemento no es 'miElemento'.");
+//   }
+// } else {
+//   console.log("El elemento no existe.");
+// }
 
 
 

@@ -357,11 +357,11 @@ ul {
 }
 
 .selected{
-  border:white 5px dotted;
+  border:yellow 5px dotted;
 
 }
 #selectSuperman{
-  width: 10rem;
+  width: 10.2rem;
 }
 
 #selectWw{

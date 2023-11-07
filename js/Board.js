@@ -218,21 +218,15 @@ class Board {
 }
 
 class box {
-  constructor(posX, posY, size, src) {
+  constructor(posX, posY, size, src,ficha1,ficha2) {
     this.posX = posX;
     this.posY = posY;
     this.size = size;
     this.img_empty = document.createElement("img"); // creo en el dom elemento img
     this.img_empty.src = src;
-    this.img_superman = new Image();
-    this.img_superman.src = "images/fichaSuperman.png";
-    this.img_batman = new Image();
-    this.img_batman.src = "images/batmann.png";
-    this.img_robin = new Image();
-    this.img_robin.src = "images/fichaRobin.png";
-    this.img_Ww = new Image();
-    this.img_Ww.src = "images/fichaWw.png";
-
+    this.ficha1 = ficha1
+    this.ficha2 = ficha2
+    
     this.isSet = false;
     this.player = 0;
   }
@@ -264,9 +258,10 @@ class box {
       this.size
     );
 
-    if (this.isSet && this.player == 1) {
+    if (this.isSet && this.player == 1 ) {
+      console.log("valor ficha"+ficha1)
       ctx.drawImage(
-        this.img_superman,
+        ficha1,
         this.posX + 240,
         this.posY + this.size * 2,
         radius * 2.4,
@@ -274,31 +269,15 @@ class box {
       );
     }
     else if (this.isSet  && this.player == 2) {
+      console.log("valor ficha"+ficha2)
+
       ctx.drawImage(
-        this.img_batman,
+        ficha2,
         this.posX + 240,
         this.posY + this.size * 2,
         radius * 2.4,
         radius * 2.4
-      );
-    }
-    else if (this.isSet ) {
-      ctx.drawImage(
-        this.img_robin,
-        this.posX + 240,
-        this.posY + this.size * 2,
-        radius * 2.4,
-        radius * 2.4
-      );
-    }
-    else if (this.isSet) {
-      ctx.drawImage(
-        this.img_Ww,
-        this.posX + 240,
-        this.posY + this.size * 2,
-        radius * 2.4,
-        radius * 2.4
-      );
+      )
     }
 
     //  console.log(this.img_superman, this.posX - radius, this.posY - radius, radius * 2, radius * 2)
