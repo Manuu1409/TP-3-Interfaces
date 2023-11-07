@@ -6,8 +6,11 @@ let timer = null;
 let figures = [];
 let lastClickedFigure = null;
 let isMouseDown = false;
-
 let player = 1;
+let turn = 0;
+let btnRestart = document.getElementById("restart");
+let btnRobin = document.getElementById("selectRobin")
+
 
 function addCircle() {
   let initialY = 50;
@@ -19,7 +22,7 @@ function addCircle() {
   batmanImg.src = "images/batmann.png";
 
   for (let i = 0; i < 5; i++) {
-    let posX = 20;
+    let posX = 30;
     let posY = initialY + i * 60;
     let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
     figures.push(circle);
@@ -108,13 +111,16 @@ function onMouseUp(e) {
         switch (player) {
           case 1:
             player = 2;
+            changeTurn()
             break;
 
           case 2:
             player = 1;
+            changeTurn()
         }
       }
     }
+    
     lastClickedFigure.resetPosition();
     clearCanvas();
     drawFigure();
@@ -122,27 +128,23 @@ function onMouseUp(e) {
   }
 }
 
-function youWin() {
+function youWin(player) {
   clearCanvas();
   board.drawBoard();
   canvas.removeEventListener("mousedown", onMouseDown);
   canvas.removeEventListener("mouseup", onMouseUp);
   canvas.removeEventListener("mousemove", onMouseMove);
   clearInterval(timer);
+  document.getElementById("info").innerHTML =
+    "<h1>GANADOR: JUGADOR" + player + "!!!</h1>";
 }
-
-// win(){                              //Cuando un jugador gana se borran los montones de fichas
-//     //y se muestra en pantalla un mensaje
-// figuras= [];
-// drawFig();
-// document.getElementById("info").innerHTML = "<h1>GANADOR: JUGADOR"+ player +"!!!</h1>"
-// console.log("gano")
-// }
 
 function finish() {
   clearCanvas();
   board.drawBoard();
+  document.getElementById("info").innerHTML = "<h1>SE ACABO EL TIEMPO</h1>";
 }
+
 function comenzar() {
   contador();
   board = new Board(fil, col, 4);
@@ -152,6 +154,15 @@ function comenzar() {
   drawFigure();
   board.drawBoard();
   quitarmodos();
+  btnRestart.classList.remove("hidden");
+  document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
+}
+
+function changeTurn(){                   //Cambia el turno de jugador
+  turn++;
+  console.log(turn)
+  player=(turn%2)+1;
+  document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
 }
 function quitarmodos() {
   btn_4_in_line.removeEventListener("click", mode4);
@@ -257,3 +268,8 @@ function mode7() {
   board.drawBoard();
   btn_comenzar.addEventListener("click", comenzar);
 }
+
+
+//seleccionar equipos
+
+btnRobin.addEventListener("click")

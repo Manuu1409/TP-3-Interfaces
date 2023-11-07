@@ -10,7 +10,7 @@ body {
   background-color: #012;
   font-family: "Baloo Chettan 2", cursive;
   color: white;
-  display: flex; 
+  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -307,39 +307,53 @@ ul {
   fill: none;
   height: 70px;
 }
-.image-share {
-}
 .container {
   display: flex;
   background-color: #003950;
   width: 90%;
 }
-.juego4inline{
+.juego4inline {
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  justify-items: end;
+  justify-content: center;
+  justify-items: center;
 }
-.juego4inline canvas{
-  margin-left: 10%;
+.datosDelJuego {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+}
+.datosDelJuego h3 {
+  margin-right: 1rem;
+  display: flex;
+  font-size: 1.2rem;
+}
+.datosDelJuego span {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+.datosDelJuego p {
+  font-size: 1.2rem;
+}
+.juego4inline canvas {
   width: 850px;
   height: 620px;
+  margin-left: 15%;
 }
-.opciosSizeCanva{
+
+.opciosSizeCanva {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-.opciosSizeCanva span{
-  font-size: 1.2rem;
-  margin-right: 1rem;
-}
-.opciosSizeCanva p{
-  font-size: 1.2rem;
-}
-.opciosSizeCanva button{
+.opciosSizeCanva button {
   margin-left: 1rem;
+}
+#restart{
+  background-image: none;
+  background-color: red;
 }
 .text {
   display: flex;
@@ -705,7 +719,6 @@ button span {
     transform: rotate(1turn);
   }
 }
-
 
 .hidden {
   display: none;

@@ -240,7 +240,11 @@
 
 
       <div class="juego4inline">
-
+   
+        <div class="datosDelJuego" id="info">
+          <h3 id="turn"></h3>
+          <span>Tiempo restante:</span><p id="time-remaining">TIME</p>
+        </div>
 
         <canvas id="canvas" width="850" height="620"></canvas>
         <img src="images/casillero_vacio_negro.jpg" id="casillero_vacio_negro" class="hidden">
@@ -252,12 +256,16 @@
         
         
         <div class="opciosSizeCanva">
-          <span>Tiempo restante:</span><p id="time-remaining">TIME</p>
           <button id="id_comenzar">Comenzar</button>
+          <button id="restart" type="button" class="btn btn-outline-light hidden ">
+            Reiniciar
+          </button>
           <button id="btn-4-in-line">4 en linea</button>
           <button id="btn-5-in-line">5 en linea</button>
           <button id="btn-6-in-line">6 en linea</button>
           <button id="btn-7-in-line">7 en linea</button>
+          <button id="selectRobin">Equipo Robin</button>
+          <button>Equipo Mujer maravilla</button>
         </div>
     </div>
 
