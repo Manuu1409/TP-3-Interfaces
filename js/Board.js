@@ -228,6 +228,11 @@ class box {
     this.img_superman.src = "images/fichaSuperman.png";
     this.img_batman = new Image();
     this.img_batman.src = "images/batmann.png";
+    this.img_robin = new Image();
+    this.img_robin.src = "images/fichaRobin.png";
+    this.img_Ww = new Image();
+    this.img_Ww.src = "images/fichaWw.png";
+
     this.isSet = false;
     this.player = 0;
   }
@@ -267,9 +272,28 @@ class box {
         radius * 2.4,
         radius * 2.4
       );
-    } else if (this.isSet && this.player == 2) {
+    }
+    else if (this.isSet  && this.player == 2) {
       ctx.drawImage(
         this.img_batman,
+        this.posX + 240,
+        this.posY + this.size * 2,
+        radius * 2.4,
+        radius * 2.4
+      );
+    }
+    else if (this.isSet ) {
+      ctx.drawImage(
+        this.img_robin,
+        this.posX + 240,
+        this.posY + this.size * 2,
+        radius * 2.4,
+        radius * 2.4
+      );
+    }
+    else if (this.isSet) {
+      ctx.drawImage(
+        this.img_Ww,
         this.posX + 240,
         this.posY + this.size * 2,
         radius * 2.4,

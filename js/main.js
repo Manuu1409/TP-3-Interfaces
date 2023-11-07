@@ -9,9 +9,13 @@ let isMouseDown = false;
 let player = 1;
 let turn = 0;
 let btnRestart = document.getElementById("restart");
-let btnRobin = document.getElementById("selectRobin")
+let btnSuperman = document.getElementById("selectSuperman");
+let btnRobin = document.getElementById("selectRobin");
+let btnBatman = document.getElementById("selectBatman");
+let btnWw = document.getElementById("selectWw");
 
 
+/*
 function addCircle() {
   let initialY = 50;
 
@@ -20,6 +24,12 @@ function addCircle() {
 
   let batmanImg = new Image();
   batmanImg.src = "images/batmann.png";
+
+  let robinImg = new Image();
+  robinImg.src = "images/fichaRobin.png";
+
+  let WWImg = new Image();
+  WWImg.src = "images/fichaWw.png";
 
   for (let i = 0; i < 5; i++) {
     let posX = 30;
@@ -35,8 +45,90 @@ function addCircle() {
     figures.push(circle);
   }
 
+  for (let i = 0; i < 5; i++) {
+    let posX = 60;
+    let posY = initialY + i * 60;
+    let circle = new Circle(posX, posY, 20, robinImg, ctx, 1);
+    figures.push(circle);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    let posX = 80;
+    let posY = initialY + i * 60;
+    let circle = new Circle(posX, posY, 20, WWImg, ctx, 1);
+    figures.push(circle);
+  }
+
+
+
+
+
   drawFigure();
 }
+
+*/
+
+function addFigureSuperman() {
+  let initialY = 50;
+
+  let supermanImg = new Image();
+  supermanImg.src = "images/fichaSuperman.png";
+
+  for (let i = 0; i < 5; i++) {
+  let posX = 30;
+  let posY = initialY + i * 60;
+  let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
+  figures.push(circle);
+}
+drawFigure();
+}
+
+function addFigureBatman() {
+  let initialY = 50;
+
+  let batmanImg = new Image();
+  batmanImg.src = "images/batmann.png";
+
+  for (let i = 0; i < 5; i++) {
+    let posX = Canvaswidth - 30;
+    let posY = initialY + i * 60;
+    let circle = new Circle(posX, posY, 20, batmanImg, ctx, 2);
+    figures.push(circle);
+}
+drawFigure();
+}
+
+function addFigureRobin() {
+  let initialY = 50;
+
+  let robinImg = new Image();
+  robinImg.src = "images/fichaRobin.png";
+
+  for (let i = 0; i < 5; i++) {
+  let posX = 30;
+  let posY = initialY + i * 60;
+  let circle = new Circle(posX, posY, 20, robinImg, ctx, 1);
+  figures.push(circle);
+}
+drawFigure();
+}
+
+function addFigureWw() {
+  let initialY = 50;
+
+  let WWImg = new Image();
+  WWImg.src = "images/fichaWw.png";
+
+  for (let i = 0; i < 5; i++) {
+    let posX = Canvaswidth - 30;
+    let posY = initialY + i * 60;
+    let circle = new Circle(posX, posY, 20, WWImg, ctx, 2);
+    figures.push(circle);
+}
+drawFigure();
+}
+
+
 
 function drawFigure() {
   //clearCanvas();
@@ -86,15 +178,19 @@ function onMouseDown(e) {
 }
 
 function onMouseMove(e) {
-  //movimiento al hacer click en la figura
-  if (isMouseDown && lastClickedFigure != null) {
-    lastClickedFigure.setPosition(e.offsetX, e.offsetY);
+  if (juegoIniciado) { // Verificar si el juego ha iniciado
+    //movimiento al hacer click en la figura
+    if (isMouseDown && lastClickedFigure != null) {
+      lastClickedFigure.setPosition(e.offsetX, e.offsetY);
 
-    clearCanvas();
-    board.drawBoard();
-    drawFigure();
+      clearCanvas();
+      board.drawBoard();
+      drawFigure();
+    }
   }
 }
+
+
 
 function onMouseUp(e) {
   let positions = [];
@@ -117,6 +213,7 @@ function onMouseUp(e) {
           case 2:
             player = 1;
             changeTurn()
+            break;
         }
       }
     }
@@ -145,18 +242,24 @@ function finish() {
   document.getElementById("info").innerHTML = "<h1>SE ACABO EL TIEMPO</h1>";
 }
 
+let juegoIniciado = false;
+
 function comenzar() {
+  juegoIniciado = true; // Se inicia el juego
   contador();
   board = new Board(fil, col, 4);
   board.buildBoard();
-  addCircle();
+  
   clearCanvas();
   drawFigure();
   board.drawBoard();
-  quitarmodos();
+  RemoveModeAndTeams();
   btnRestart.classList.remove("hidden");
   document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
+  
 }
+
+
 
 function changeTurn(){                   //Cambia el turno de jugador
   turn++;
@@ -164,13 +267,32 @@ function changeTurn(){                   //Cambia el turno de jugador
   player=(turn%2)+1;
   document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
 }
-function quitarmodos() {
+
+function RemoveModeAndTeams() {
   btn_4_in_line.removeEventListener("click", mode4);
   btn_5_in_line.removeEventListener("click", mode5);
   btn_6_in_line.removeEventListener("click", mode6);
   btn_7_in_line.removeEventListener("click", mode7);
+  btnSuperman.removeEventListener("click", ShowFigureSuperman);
+  btnRobin.removeEventListener("click", ShowFigureBatman );
+  btnBatman.removeEventListener("click",ShowFigureRobin );
+  btnWw.removeEventListener("click",ShowFigureWw );
   btn_comenzar.removeEventListener("click", comenzar);
+
+  // display none a los botones , no me salia bien en un css aparte
+  btn_4_in_line.style.display = "none";
+  btn_5_in_line.style.display = "none";
+  btn_6_in_line.style.display = "none";
+  btn_7_in_line.style.display = "none";
+  btnSuperman.style.display = "none";
+  btnRobin.style.display = "none";
+  btnBatman.style.display = "none";
+  btnWw.style.display = "none";
+  btn_comenzar.style.display = "none";
+
+  
 }
+
 const startingMinutes = 5;
 let time = startingMinutes * 60;
 const time_remaining = document.getElementById("time-remaining");
@@ -270,6 +392,40 @@ function mode7() {
 }
 
 
-//seleccionar equipos
 
-btnRobin.addEventListener("click")
+//equipos
+btnSuperman.addEventListener("click", ShowFigureSuperman)
+
+function ShowFigureSuperman() {
+  addFigureSuperman();
+
+}
+
+
+btnBatman.addEventListener("click", ShowFigureBatman)
+
+function ShowFigureBatman() {
+  addFigureBatman();
+
+}
+
+btnRobin.addEventListener("click", ShowFigureRobin)
+
+function ShowFigureRobin() {
+  addFigureRobin();
+
+}
+
+btnWw.addEventListener("click", ShowFigureWw)
+
+function ShowFigureWw() {
+  addFigureWw();
+
+}
+
+
+
+
+
+
+
