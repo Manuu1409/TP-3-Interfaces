@@ -355,6 +355,20 @@ ul {
   background-image: none;
   background-color: red;
 }
+
+.selected{
+  border:white 5px dotted;
+
+}
+#selectSuperman{
+  width: 10rem;
+}
+
+#selectWw{
+  width: 13rem;
+}
+
+
 .text {
   display: flex;
   flex-direction: column;

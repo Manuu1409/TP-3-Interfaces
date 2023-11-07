@@ -75,12 +75,11 @@ function addFigureSuperman() {
   supermanImg.src = "images/fichaSuperman.png";
 
   for (let i = 0; i < 5; i++) {
-  let posX = 30;
-  let posY = initialY + i * 60;
-  let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
-  figures.push(circle);
-}
-drawFigure();
+    let posX = 30;
+    let posY = initialY + i * 60;
+    let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
+    figures.push(circle);
+  }
 }
 
 function addFigureBatman() {
@@ -95,7 +94,6 @@ function addFigureBatman() {
     let circle = new Circle(posX, posY, 20, batmanImg, ctx, 2);
     figures.push(circle);
 }
-drawFigure();
 }
 
 function addFigureRobin() {
@@ -105,12 +103,11 @@ function addFigureRobin() {
   robinImg.src = "images/fichaRobin.png";
 
   for (let i = 0; i < 5; i++) {
-  let posX = 30;
-  let posY = initialY + i * 60;
-  let circle = new Circle(posX, posY, 20, robinImg, ctx, 1);
-  figures.push(circle);
+    let posX = Canvaswidth - 30;
+    let posY = initialY + i * 60;
+    let circle = new Circle(posX, posY, 20, robinImg, ctx, 2);
+    figures.push(circle);
 }
-drawFigure();
 }
 
 function addFigureWw() {
@@ -120,12 +117,11 @@ function addFigureWw() {
   WWImg.src = "images/fichaWw.png";
 
   for (let i = 0; i < 5; i++) {
-    let posX = Canvaswidth - 30;
+    let posX = 30;
     let posY = initialY + i * 60;
-    let circle = new Circle(posX, posY, 20, WWImg, ctx, 2);
+    let circle = new Circle(posX, posY, 20, WWImg, ctx, 1);
     figures.push(circle);
-}
-drawFigure();
+  }
 }
 
 
@@ -249,7 +245,7 @@ function comenzar() {
   contador();
   board = new Board(fil, col, 4);
   board.buildBoard();
-  
+  btnRestart.addEventListener("click", reloadPage);
   clearCanvas();
   drawFigure();
   board.drawBoard();
@@ -258,7 +254,9 @@ function comenzar() {
   document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
   
 }
-
+function reloadPage() {                  //Reinicia el juego recargando la pagina
+  location.reload();
+} 
 
 
 function changeTurn(){                   //Cambia el turno de jugador
@@ -348,6 +346,9 @@ function switchColumnsAndRows() {
 }
 
 btn_4_in_line.addEventListener("click", mode4);
+
+mode4()
+
 function mode4() {
   mode = "default";
   switchColumnsAndRows();
@@ -355,6 +356,10 @@ function mode4() {
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
+  btn_4_in_line.classList.add("selected");
+  btn_5_in_line.classList.remove("selected");
+  btn_6_in_line.classList.remove("selected");
+  btn_7_in_line.classList.remove("selected");
   btn_comenzar.addEventListener("click", comenzar);
 }
 
@@ -366,6 +371,10 @@ function mode5() {
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
+  btn_5_in_line.classList.add("selected");
+  btn_4_in_line.classList.remove("selected");
+  btn_6_in_line.classList.remove("selected");
+  btn_7_in_line.classList.remove("selected");
   btn_comenzar.addEventListener("click", comenzar);
 }
 
@@ -377,6 +386,10 @@ function mode6() {
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
+  btn_6_in_line.classList.add("selected");
+  btn_4_in_line.classList.remove("selected");
+  btn_5_in_line.classList.remove("selected");
+  btn_7_in_line.classList.remove("selected");
   btn_comenzar.addEventListener("click", comenzar);
 }
 
@@ -388,15 +401,25 @@ function mode7() {
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
+  btn_7_in_line.classList.add("selected");
+  btn_4_in_line.classList.remove("selected");
+  btn_5_in_line.classList.remove("selected");
+  btn_6_in_line.classList.remove("selected");
   btn_comenzar.addEventListener("click", comenzar);
 }
 
 
 
 //equipos
+this.ShowFigureSuperman()
+this.ShowFigureBatman()
+
+
 btnSuperman.addEventListener("click", ShowFigureSuperman)
 
 function ShowFigureSuperman() {
+  btnWw.classList.remove("selected");
+  btnSuperman.classList.add("selected");
   addFigureSuperman();
 
 }
@@ -405,13 +428,16 @@ function ShowFigureSuperman() {
 btnBatman.addEventListener("click", ShowFigureBatman)
 
 function ShowFigureBatman() {
+  btnRobin.classList.remove("selected");
+  btnBatman.classList.add("selected");
   addFigureBatman();
-
 }
 
 btnRobin.addEventListener("click", ShowFigureRobin)
 
 function ShowFigureRobin() {
+  btnBatman.classList.remove("selected");
+  btnRobin.classList.add("selected");
   addFigureRobin();
 
 }
@@ -419,6 +445,8 @@ function ShowFigureRobin() {
 btnWw.addEventListener("click", ShowFigureWw)
 
 function ShowFigureWw() {
+  btnSuperman.classList.remove("selected");
+  btnWw.classList.add("selected");
   addFigureWw();
 
 }
