@@ -737,3 +737,7 @@ button span {
 .hidden {
   display: none;
 }
+
+.winner {
+  color: green;
+}
