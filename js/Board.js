@@ -1,3 +1,4 @@
+
 class Board {
   constructor(x, y, lineMode) {
     this.MaxFil = y; //x
@@ -99,12 +100,12 @@ class Board {
     }
   }
 
-  isLine(line) {
+  isLine(line,player) {
     let samePieces = 0;
     //console.log(line);
     for (let i = 0; i < line.length; i++) {
       console.log(line);
-      if (line[i].isSet) {
+      if (line[i].isSet && line[i].getPlayer() == player) {
         samePieces++;
         if (samePieces >= this.lineMode) {
           return true;
@@ -117,7 +118,7 @@ class Board {
     return false;
   }
 
-  CheckVertical(moveX) {
+  CheckVertical(moveX,player) {
     console.log("chekeo columna vertical", moveX);
 
     let line = [];
@@ -128,7 +129,7 @@ class Board {
       console.log(this.board[moveX][y]);
     }
 
-    let isLine = this.isLine(line);
+    let isLine = this.isLine(line,player);
 
     if (isLine) {
       console.log("se hizo linea verticalmente");
@@ -137,7 +138,7 @@ class Board {
     return isLine;
   }
 
-  CheckHorizontal(moveY) {
+  CheckHorizontal(moveY,player) {
     console.log("chekeo columna horizontal", moveY);
 
     let line = [];
@@ -149,7 +150,7 @@ class Board {
       line.push(this.board[x][moveY]);
     }
 
-    let isLine = this.isLine(line);
+    let isLine = this.isLine(line,player);
 
     if (isLine) {
       console.log("se hizo linea horizontalmente");
@@ -158,7 +159,7 @@ class Board {
     return isLine;
   }
 
-  CheckDiagonal(moveX, moveY) {
+  CheckDiagonal(moveX, moveY,player) {
     console.log("Chequeo diagonal");
 
     let line = []; //arreglo vacio que almacena fichas en diagonal
@@ -174,7 +175,7 @@ class Board {
     for (let i = 0; x + i < this.MaxCol -1  && y + i < this.MaxFil -1 ; i++) { //recorre diagonal descendente
       line.push(this.board[x + i][y + i]);
     }
-    if (this.isLine(line)) { //verifica si hay diagonal descendente
+    if (this.isLine(line,player)) { //verifica si hay diagonal descendente
       return true;
     } else {
       line = [];
@@ -204,12 +205,12 @@ class Board {
 
   }
 
-  checkWinner(moveX, moveY) {
-    //this.CheckHorizontal(moveY);
-    //this.CheckVertical(moveX);
-    this.CheckDiagonal(moveX, moveY);
+  checkWinner(moveX, moveY,player) {
+    this.CheckHorizontal(moveY,player);
+    this.CheckVertical(moveX,player);
+    this.CheckDiagonal(moveX, moveY,player);
 
-    if (/*this.CheckVertical(moveX) || this.CheckHorizontal(moveY) ||*/ this.CheckDiagonal(moveX, moveY)) {
+    if (this.CheckVertical(moveX,player) || this.CheckHorizontal(moveY,player) || this.CheckDiagonal(moveX, moveY,player)) {
       return true;
     } else {
       return false;
@@ -234,6 +235,9 @@ class box {
   set(player) {
     this.isSet = true;
     this.player = player;
+  }
+  getPlayer(){
+    return this.player;
   }
 
   getisSet() {

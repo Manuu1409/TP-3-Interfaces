@@ -15,7 +15,7 @@ let btnSuperman = document.getElementById("selectSuperman");
 let btnRobin = document.getElementById("selectRobin");
 let btnBatman = document.getElementById("selectBatman");
 let btnWw = document.getElementById("selectWw");
-
+let lineMode=4
 
 /*
 function addCircle() {
@@ -60,7 +60,6 @@ function addCircle() {
     let circle = new Circle(posX, posY, 20, WWImg, ctx, 1);
     figures.push(circle);
   }
-
 
 
 
@@ -197,7 +196,7 @@ function onMouseUp(e) {
     if (board.isIn(e.offsetX, e.offsetY)) {
       positions = board.dropToken(e.offsetX, player);
       if (positions != -1) {
-        if (board.checkWinner(positions[0], positions[1])) {
+        if (board.checkWinner(positions[0], positions[1],player)) {
           console.log("ganaste");
           youWin(player);
           return;
@@ -245,7 +244,7 @@ let juegoIniciado = false;
 function comenzar() {
   juegoIniciado = true; // Se inicia el juego
   contador();
-  board = new Board(fil, col, 4);
+  board = new Board(fil, col, lineMode);
   board.buildBoard();
   btnRestart.addEventListener("click", reloadPage);
   clearCanvas();
@@ -353,8 +352,9 @@ mode4()
 
 function mode4() {
   mode = "default";
+  lineMode=4;
   switchColumnsAndRows();
-  board = new Board(fil, col, 4);
+  board = new Board(fil, col, lineMode);
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
@@ -368,8 +368,9 @@ function mode4() {
 btn_5_in_line.addEventListener("click", mode5);
 function mode5() {
   mode = 5;
+  lineMode=5;
   switchColumnsAndRows();
-  board = new Board(fil, col, 4);
+  board = new Board(fil, col, lineMode);
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
@@ -383,8 +384,9 @@ function mode5() {
 btn_6_in_line.addEventListener("click", mode6);
 function mode6() {
   mode = 6;
+  lineMode=6;
   switchColumnsAndRows();
-  board = new Board(fil, col, 4);
+  board = new Board(fil, col, lineMode);
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
@@ -398,8 +400,9 @@ function mode6() {
 btn_7_in_line.addEventListener("click", mode7);
 function mode7() {
   mode = 7;
+  lineMode=7;
   switchColumnsAndRows();
-  board = new Board(fil, col, 4);
+  board = new Board(fil, col, lineMode);
   board.buildBoard();
   clearCanvas();
   board.drawBoard();
@@ -423,7 +426,7 @@ function ShowFigureSuperman() {
   btnWw.classList.remove("selected");
   btnSuperman.classList.add("selected");
   addFigureSuperman();
-  ficha1.src = "images/supermann.png"
+  ficha1.src = "images/fichaSuperman.png"
 }
 
 
