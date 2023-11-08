@@ -268,8 +268,8 @@ class box {
         ficha1,
         this.posX + 240,
         this.posY + this.size * 2,
-        radius * 2.4,
-        radius * 2.4
+        radius * 2.5,
+        radius * 2.5
       );
     }
     else if (this.isSet  && this.player == 2) {
@@ -279,8 +279,8 @@ class box {
         ficha2,
         this.posX + 240,
         this.posY + this.size * 2,
-        radius * 2.4,
-        radius * 2.4
+        radius * 2.5,
+        radius * 2.5
       )
     }
 
