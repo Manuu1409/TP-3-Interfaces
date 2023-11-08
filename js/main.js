@@ -3,7 +3,8 @@ let ctx = canvas.getContext("2d");
 let Canvaswidth = canvas.width;
 let Canvasheight = canvas.height;
 let timer = null;
-let figures = [];
+let figures1 = [];
+let figures2 = [];
 let lastClickedFigure = null;
 let isMouseDown = false;
 let player = 1;
@@ -17,61 +18,11 @@ let btnBatman = document.getElementById("selectBatman");
 let btnWw = document.getElementById("selectWw");
 let lineMode=4
 
-/*
-function addCircle() {
-  let initialY = 50;
 
-  let supermanImg = new Image();
-  supermanImg.src = "images/fichaSuperman.png";
-
-  let batmanImg = new Image();
-  batmanImg.src = "images/batmann.png";
-
-  let robinImg = new Image();
-  robinImg.src = "images/fichaRobin.png";
-
-  let WWImg = new Image();
-  WWImg.src = "images/fichaWw.png";
-
-  for (let i = 0; i < 5; i++) {
-    let posX = 30;
-    let posY = initialY + i * 60;
-    let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
-    figures.push(circle);
-  }
-
-  for (let i = 0; i < 5; i++) {
-    let posX = Canvaswidth - 30;
-    let posY = initialY + i * 60;
-    let circle = new Circle(posX, posY, 20, batmanImg, ctx, 2);
-    figures.push(circle);
-  }
-
-  for (let i = 0; i < 5; i++) {
-    let posX = 60;
-    let posY = initialY + i * 60;
-    let circle = new Circle(posX, posY, 20, robinImg, ctx, 1);
-    figures.push(circle);
-  }
-
-  for (let i = 0; i < 5; i++) {
-    let posX = 80;
-    let posY = initialY + i * 60;
-    let circle = new Circle(posX, posY, 20, WWImg, ctx, 1);
-    figures.push(circle);
-  }
-
-
-
-
-  drawFigure();
-}
-
-*/
 
 function addFigureSuperman() {
   let initialY = 50;
-
+  figures1=[];
   let supermanImg = new Image();
   supermanImg.src = "images/fichaSuperman.png";
 
@@ -79,13 +30,13 @@ function addFigureSuperman() {
     let posX = 30;
     let posY = initialY + i * 60;
     let circle = new Circle(posX, posY, 20, supermanImg, ctx, 1);
-    figures.push(circle);
+    figures1.push(circle);
   }
 }
 
 function addFigureBatman() {
   let initialY = 50;
-
+  figures2=[];
   let batmanImg = new Image();
   batmanImg.src = "images/batmann.png";
 
@@ -93,13 +44,13 @@ function addFigureBatman() {
     let posX = Canvaswidth - 30;
     let posY = initialY + i * 60;
     let circle = new Circle(posX, posY, 20, batmanImg, ctx, 2);
-    figures.push(circle);
+    figures2.push(circle);
 }
 }
 
 function addFigureRobin() {
   let initialY = 50;
-
+  figures2=[];
   let robinImg = new Image();
   robinImg.src = "images/fichaRobin.png";
 
@@ -107,13 +58,13 @@ function addFigureRobin() {
     let posX = Canvaswidth - 30;
     let posY = initialY + i * 60;
     let circle = new Circle(posX, posY, 20, robinImg, ctx, 2);
-    figures.push(circle);
+    figures2.push(circle);
 }
 }
 
 function addFigureWw() {
   let initialY = 50;
-
+  figures1=[];
   let WWImg = new Image();
   WWImg.src = "images/fichaWw.png";
 
@@ -121,7 +72,7 @@ function addFigureWw() {
     let posX = 30;
     let posY = initialY + i * 60;
     let circle = new Circle(posX, posY, 20, WWImg, ctx, 1);
-    figures.push(circle);
+    figures1.push(circle);
   }
 }
 
@@ -129,8 +80,9 @@ function addFigureWw() {
 
 function drawFigure() {
   //clearCanvas();
-  for (let i = 0; i < figures.length; i++) {
-    figures[i].draw();
+  for (let i = 0; i < figures1.length; i++) {
+    figures1[i].draw();
+    figures2[i].draw();
   }
 }
 
@@ -140,9 +92,17 @@ function clearCanvas() {
 }
 
 function findClickedFigure(x, y) {
-  for (let i = 0; i < figures.length; i++) {
+  let element;
+  for (let i = 0; i < figures1.length; i++) {
     //recorro figuras
-    const element = figures[i]; //me las traigo
+    switch(player){
+      case 1:
+        element = figures1[i];
+      break;
+      case 2:
+         element = figures2[i];
+        break;
+    } //me las traigo
     console.log(x, y);
     if (element.isPointInside(x, y) && element.getPlayer() == player) {
       return element;
@@ -414,8 +374,6 @@ function mode7() {
 }
 
 
-
-//equipos
 this.ShowFigureSuperman()
 this.ShowFigureBatman()
 
