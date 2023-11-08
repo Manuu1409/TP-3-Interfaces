@@ -190,7 +190,7 @@ function youWin(player) {
   canvas.removeEventListener("mousemove", onMouseMove);
   clearInterval(timer);
   document.getElementById("info").innerHTML =
-    "<h1 class='winner'>GANADOR: JUGADOR " + player + " !!!</h1>";
+    "<h1>GANADOR: JUGADOR" + player + "!!!</h1>";
 }
 
 function finish() {
@@ -212,7 +212,7 @@ function comenzar() {
   board.drawBoard();
   RemoveModeAndTeams();
   btnRestart.classList.remove("hidden");
-  document.getElementById("turn").innerHTML= "<h3>Turno: Jugador  " + player + " </h3>";
+  document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
   
 }
 function reloadPage() {                  //Reinicia el juego recargando la pagina

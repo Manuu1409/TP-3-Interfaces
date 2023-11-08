@@ -357,18 +357,20 @@ ul {
 }
 
 .selected{
-  border:yellow 5px dotted;
+  border:white 5px dotted;
 
 }
 #selectSuperman{
-  width: 10.2rem;
+  width: 12.5rem;
 }
 
 #selectWw{
-  width: 13rem;
+  width: 15rem;
 }
 
-
+#selectBatman{
+  width: 11rem;
+}
 .text {
   display: flex;
   flex-direction: column;
